@@ -1,2 +1,2 @@
-# Python--TASK1-TASK2
+# Python--Assignments
 STARTED COURSE
