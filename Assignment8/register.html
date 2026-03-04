@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+        .form-box {
+            width: 350px;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 8px;
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-box">
+    <h2>User Registration</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name() }}
+        </p>
+
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email() }}
+        </p>
+
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password() }}
+        </p>
+
+        <p>
+            {{ form.confirm_password.label }}<br>
+            {{ form.confirm_password() }}
+        </p>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+</div>
+
+</body>
+</html>
