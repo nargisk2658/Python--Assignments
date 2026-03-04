@@ -1,18 +1,57 @@
-from flask import Flask, render_template, redirect, url_for
-from config import Config
-from models import db, User
-from forms import RegistrationForm
+from flask import Flask, render_template, flash
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, Length
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config.from_object(Config)
 
-db.init_app(app)
+# Secret Key for CSRF protection
+app.config['SECRET_KEY'] = 'mysecretkey'
 
-@app.route("/", methods=["GET", "POST"])
+# Database Configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+# ----------------------------
+# Database Model
+# ----------------------------
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+
+# ----------------------------
+# Registration Form
+# ----------------------------
+class RegistrationForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField(
+        'Confirm Password',
+        validators=[DataRequired(), EqualTo('password')]
+    )
+    submit = SubmitField('Register')
+
+# ----------------------------
+# Route
+# ----------------------------
+@app.route('/', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
+
+        # Check if email already exists
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash("Email already registered!")
+            return render_template("register.html", form=form)
+
         try:
             user = User(
                 name=form.name.data,
@@ -22,18 +61,13 @@ def register():
             db.session.add(user)
             db.session.commit()
 
-            return redirect(url_for("success", username=user.name))
+            return render_template("success.html", name=form.name.data)
 
         except Exception as e:
             db.session.rollback()
-            return f"Error occurred: {str(e)}"
+            flash("Something went wrong!")
 
     return render_template("register.html", form=form)
-
-
-@app.route("/success/<username>")
-def success(username):
-    return render_template("success.html", name=username)
 
 
 if __name__ == "__main__":
