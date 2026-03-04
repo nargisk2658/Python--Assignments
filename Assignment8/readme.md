@@ -1,22 +1,21 @@
-# Flask Registration Form Project
+# Flask Registration System (Flask-WTF + SQLAlchemy)
 
-## 📌 Project Title
+## 📌 Project Overview
 
-Flask – Registration Form Project
+This project is a complete Registration System built using **Flask**, **Flask-WTF**, and **SQLAlchemy**.
 
-## 📖 Description
+The application allows users to register using a form with proper validation and stores the registration data in a SQLite database.
 
-This is a simple Flask web application that displays a registration form and handles user input using the POST method.
+This project demonstrates practical implementation of:
 
-When the user fills out the form (Name, Email, Password) and submits it, the application displays a success message with the user's name.
-
-This project demonstrates:
-
-* Basic Flask setup
-* Routing
-* HTML templates
-* Handling form data using POST method
-* Running a Flask development server
+* Flask Routing
+* Template Rendering (Jinja2)
+* Flask-WTF Forms
+* WTForms Validators
+* CSRF Protection
+* SQLAlchemy ORM
+* SQLite Database Integration
+* Error Handling
 
 ---
 
@@ -24,46 +23,123 @@ This project demonstrates:
 
 * Python 3
 * Flask
-* HTML
+* Flask-WTF
+* WTForms
+* Flask-SQLAlchemy
+* SQLite
+* HTML (Jinja2 Templates)
 
 ---
 
 ## 📂 Project Structure
 
-Registration_Project/
-│
+project_folder/
+
 ├── app.py
-├── templates/
-│     └── register.html
-└── README.md
+├── users.db (auto-created database file)
+├── README.md
+└── templates/
+  ├── register.html
+  └── success.html
+
+---
+
+## 🚀 Features
+
+✔ User Registration Form
+✔ Form Validation using Flask-WTF
+✔ Confirm Password Validation
+✔ Email Format Validation
+✔ Minimum Password Length Validation
+✔ CSRF Protection
+✔ SQLite Database Storage
+✔ Error Handling with Try-Except
+✔ Success Page after Registration
+
+---
+
+## 🔐 Form Validations Implemented
+
+* Name must not be empty
+* Email must be valid format
+* Password must be at least 6 characters
+* Confirm Password must match Password
+* Duplicate email prevented using unique constraint
+
+---
+
+## 🗄 Database Details
+
+* Database: SQLite
+* File Name: `users.db`
+* ORM Used: SQLAlchemy
+* Table Created: `User`
+* Fields:
+
+  * id (Primary Key)
+  * name
+  * email (Unique)
+  * password
+
+The database file is automatically created when the application runs for the first time.
 
 ---
 
 ## ▶ How to Run the Project
 
-1. Install Flask (if not installed):
+### Step 1: Install Required Packages
 
-   python -m pip install flask
+Open terminal inside project folder and run:
 
-2. Run the application:
-
-   python app.py
-
-3. Open the browser and go to:
-
-   http://127.0.0.1:5000
+```
+pip install flask flask-wtf flask-sqlalchemy email-validator
+```
 
 ---
 
-## ✅ Features
+### Step 2: Run the Application
 
-* Displays registration form
-* Accepts user input
-* Handles POST request
-* Displays success message after submission
+```
+python app.py
+```
 
 ---
 
-## 📌 Note
+### Step 3: Open in Browser
 
-This project runs on Flask’s development server and is intended for learning purposes only.
+Go to:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## ⚠ Important Configuration
+
+The application includes:
+
+```
+app.config['SECRET_KEY'] = 'mysecretkey'
+```
+
+This is required for CSRF protection in Flask-WTF.
+
+---
+
+## 📌 Learning Outcomes
+
+Through this project, the following concepts were implemented and understood:
+
+* Difference between raw form handling and Flask-WTF forms
+* How to create and validate forms using WTForms
+* How to define models using SQLAlchemy
+* How to persist data in SQLite database
+* How to protect forms using CSRF token
+* How to structure a Flask project professionally
+
+
+
+## 📝 Note
+
+This project is developed for learning purposes as part of the Flask module assignment. It demonstrates core backend concepts required for building real-world web applications.
