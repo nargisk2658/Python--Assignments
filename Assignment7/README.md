@@ -1,8 +1,9 @@
 # PostgreSQL + Python Basic Assignment
 
 ## What I did
-
-In this assignment, I connected Python with PostgreSQL database and performed some basic operations like creating a table, inserting data and fetching records.
+I practiced multiple versions while learning.
+Final code is written by me based on my understanding.
+I referred to course material and documentation during learning.
 
 ## Steps performed
 
