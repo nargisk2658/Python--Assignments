@@ -1,39 +1,34 @@
 import psycopg2
 
 # try to connect
-try:
-    conn = psycopg2.connect(
-        host="localhost",
-        database="postgres",
-        user="postgres",
-        password="1234"
-    )
+conn = psycopg2.connect(
+    host="localhost",
+    database="postgres",
+    user="postgres",
+    password="1234"
+)
 
-    print("Connected!")
+print("Connected!")
 
-    cur = conn.cursor()
+cur = conn.cursor()
 
-    # create table
-    cur.execute("CREATE TABLE IF NOT EXISTS students (id SERIAL PRIMARY KEY, name TEXT, age INT);")
-    print("Table created")
+# create table
+cur.execute("CREATE TABLE IF NOT EXISTS students (id SERIAL PRIMARY KEY, name TEXT, age INT);")
 
-    # insert data
-    cur.execute("INSERT INTO students (name, age) VALUES ('Nargis', 22);")
-    conn.commit()
-    print("Data inserted")
+# insert data
+name = "Nargis"
+age = 22
+cur.execute("INSERT INTO students (name, age) VALUES (%s, %s)", (name, age))
 
-    # fetch data
-    cur.execute("SELECT * FROM students;")
-    data = cur.fetchall()
+conn.commit()
 
-    print("All records:")
-    for row in data:
-        print(row)
+# fetch data
+cur.execute("SELECT * FROM students")
+rows = cur.fetchall()
 
-    # close
-    cur.close()
-    conn.close()
-    print("Done")
+print("All records:")
+for row in rows:
+    print(row)
 
-except Exception as e:
-    print("Error:", e)
+conn.close()
+print("Done")
