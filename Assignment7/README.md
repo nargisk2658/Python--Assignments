@@ -1,29 +1,23 @@
-# Assignment 7 – PostgreSQL with Python
+# Assignment 7
 
-This program connects to PostgreSQL database using Python.
+This program connects Python to PostgreSQL database.
 
-Steps performed in the code:
+Steps:
 
-1. Connect to PostgreSQL database
-2. Create students table
-3. Insert one record
-4. Fetch and display records
-5. Close database connection
+* Connect to database
+* Create table
+* Insert one record
+* Show data
+* Close connection
 
 Requirements:
 
-* Python installed
-* PostgreSQL installed
-* psycopg2 library
+* Python
+* PostgreSQL
+* psycopg2
 
-Install psycopg2:
+Install:
 pip install psycopg2
 
-How to run:
-
-1. Update database username and password in test.py
-2. Run the file:
-   python test.py
-
-Output:
-The program will create a table, insert one record and display it.
+Run:
+python test.py
