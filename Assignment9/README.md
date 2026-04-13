@@ -1,4 +1,4 @@
-# Django REST API Project (Assignment 12)
+# Django REST API Project
 
 This is a simple Django REST API project I created as part of my assignment.
 
