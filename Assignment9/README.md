@@ -1,105 +1,114 @@
 # Django REST API - User Management
 
-## 📌 Project Description
+## 📌 Project Overview
 
-This project is a simple Django REST API for managing users.
-It allows us to create, view, update, and delete user data using API endpoints.
+This project is a simple Django REST API that allows basic operations on users.
+It is built to understand how Django REST Framework works using class-based views.
 
-I created this project to understand how Django REST Framework works with models, serializers, and class-based views.
+The API supports:
+
+* Creating a new user
+* Viewing all users
+* Retrieving a single user
+* Updating user details
+* Deleting a user
 
 ---
 
-## 🛠 Technologies Used
+## 🛠️ Technologies Used
 
 * Python
 * Django
 * Django REST Framework
+* SQLite (default database)
 
 ---
 
 ## 📂 Project Structure
 
-* users/ → contains models, views, serializers
-* urls.py → handles API routes
-* manage.py → Django project runner
+* `users/` → contains models, views, serializers
+* `models.py` → defines User model
+* `serializers.py` → converts model data to JSON
+* `views.py` → handles API logic using class-based views
+* `urls.py` → defines API routes
 
 ---
 
-## ⚙️ Setup Instructions
+## 👤 User Model Fields
 
-1. Clone or download the project
+* `name` → stores user's name
+* `email` → unique email for each user
+* `age` → integer value for age
 
-2. Install required packages:
-   pip install django djangorestframework
+Basic validation is applied to ensure:
 
-3. Apply migrations:
-   python manage.py makemigrations
-   python manage.py migrate
-
-4. Run the server:
-   python manage.py runserver
-
-5. Open browser:
-   http://127.0.0.1:8000/
+* Email is unique
+* Age cannot be negative
 
 ---
 
 ## 🔗 API Endpoints
 
-### 1. Get all users
+### 1. Get all users / Create user
 
-GET /api/users/
+`GET /api/users/` → returns list of users
+`POST /api/users/` → creates a new user
 
-### 2. Create a user
+### 2. Get / Update / Delete single user
 
-POST /api/users/
-
-Example JSON:
-{
-"name": "Nargis",
-"email": "[nargis@gmail.com](mailto:nargis@gmail.com)",
-"age": 22
-}
+`GET /api/users/<id>/`
+`PUT /api/users/<id>/`
+`DELETE /api/users/<id>/`
 
 ---
 
-### 3. Get single user
+## ▶️ How to Run the Project
 
-GET /api/users/<id>/
+1. Install dependencies:
 
----
+```
+python -m pip install django djangorestframework
+```
 
-### 4. Update user
+2. Navigate to project folder:
 
-PUT /api/users/<id>/
+```
+cd myproject
+```
 
----
+3. Apply migrations:
 
-### 5. Delete user
+```
+python manage.py makemigrations
+python manage.py migrate
+```
 
-DELETE /api/users/<id>/
+4. Run server:
 
----
+```
+python manage.py runserver
+```
 
-## ✅ Features
+5. Open in browser:
 
-* Create new user
-* View all users
-* Update user details
-* Delete user
-* Basic validation (age must be 18+)
-
----
-
-## 💡 What I Learned
-
-* How to create models in Django
-* How serializers convert data to JSON
-* How class-based views work (ListCreateAPIView, RetrieveUpdateDestroyAPIView)
-* How to test APIs using browser/Postman
+```
+http://127.0.0.1:8000/api/users/
+```
 
 ---
 
-## 👩‍💻 Author
+## 💡 Learning Outcome
 
-Nargis Khatoon
+Through this project, I learned:
+
+* How to create Django apps
+* How to build REST APIs using Django REST Framework
+* How to use class-based views like ListCreateAPIView and RetrieveUpdateDestroyAPIView
+* How serializers work for data validation and conversion
+
+---
+
+## ✅ Conclusion
+
+This project demonstrates a basic but functional REST API with proper structure and validation.
+It follows the required approach using class-based views and clean organization of files.
