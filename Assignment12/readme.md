@@ -1,17 +1,20 @@
-# Assignment 12 - Selenium Automation
+# Assignment 12 - Selenium
 
-## Description
-This project demonstrates automation using Selenium including:
-- Opening a URL
-- Automating Google search
-- Extracting search results
-- Navigating between pages
-- Refreshing the page
+## what i did
+in this assignment i used selenium to automate browser.
 
-## How to Run
+## steps
+- opened google
+- searched for python programming
+- got some search results
+- clicked first link
+- printed page title
+- used back and refresh
 
-1. Install dependencies:
+## how to run
+
+install selenium:
 pip install selenium
 
-2. Run:
+run file:
 python google_search_scrape.py
